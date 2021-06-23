@@ -232,12 +232,16 @@ function createPercentageChart() {
     rect(resolution * cols - percentage_chart_width, resolution * rows - percentage_chart_height * 2, dead_value, percentage_chart_height);
 
 }
-function startSimulation() {
-    console.log("hi")
+function startSimulation(e) {
+    console.log("hi", e)
     if (!simulation_started) {
         simulation_started = !simulation_started;
     }
-    this.innerText = "Stop Simulation"
+    if (simulation_started) {
+        e.innerText = "Stop Simulation";
+    } else {
+        e.innerText = "Start Simulation";
+    }
 }
 
 function runSimulation() {
