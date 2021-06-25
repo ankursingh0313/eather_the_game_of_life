@@ -2,9 +2,43 @@
     <head>
         <script language="javascript" type="text/javascript" src="./p5.js"></script>
         <script language="javascript" type="text/javascript" src="sketch.js"></script>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div id="game_board"></div>
-        <div><button onclick="startSimulation(this)">Start Simulation</button></div>
+        <div class="container">
+            <h1>Game Of Life</h1>
+            <div id="game_board"></div>
+            <div class="controls">
+                <div class="power_btn_controls">
+                    <button onclick="startSimulation(this)" class="btn btn-primary">Start Simulation</button>
+                </div>
+                <div class="life_span_controls">
+                    <div class="input">
+                        <input type="checkbox" name="max_age_limit" id="max_age_limit" />
+                        <label for="max_age_limit">Max age limit</label>
+                    </div>
+                    <div class="input">
+                        <label for="life_span">Maximum age</label>
+                        <input type="range" name="life_span" id="life_span" min="1" value="2" max="10" disabled />
+                        <span id="value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            document.getElementById('value').innerText = document.getElementById('life_span').value;
+            document.getElementById('max_age_limit').addEventListener("change", (e)=>{
+                let life_span_obj       = document.getElementById('life_span');
+                life_span_obj.disabled  = !life_span_obj.disabled;
+                document.getElementById('value').innerText = life_span_obj.value;
+                ultimate_trooth         = !ultimate_trooth;
+                maximum_age             = parseInt(life_span_obj.value);
+            });
+            document.getElementById('life_span').addEventListener("change", (e)=>{
+                document.getElementById('value').innerText = e.target.value;
+                maximum_age = parseInt(e.target.value);
+            });
+        </script>
     </body>
 </html>
